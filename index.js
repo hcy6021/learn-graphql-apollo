@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     teams: [Team]
     equipments: [Equipment]
+    supplies: [Supply]
   }
   type Team {
     id: Int
@@ -20,11 +21,16 @@ const typeDefs = gql`
     count: Int
     new_or_used: String
   }
+  type Supply {
+    id: String
+    team: Int
+  }
 `;
 const resolvers = {
   Query: {
     teams: () => database.teams,
     equipments: () => database.equipments,
+    supplies: () => database.supplies,
   },
 };
 const server = new ApolloServer({ typeDefs, resolvers });
